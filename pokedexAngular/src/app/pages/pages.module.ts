@@ -4,15 +4,19 @@ import { PagesComponent } from './pages.component';
 import { HomeComponent } from './home/home.component';
 import { RouterModule } from '@angular/router';
 import { RoutingModule } from './pages-routing.module';
+import { DetailsComponent } from './details/details.component';
+import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
   imports: [
     CommonModule,
-    RoutingModule
+    RoutingModule,
+    SharedModule
   ],
   declarations: [
     PagesComponent,
-    HomeComponent
+    HomeComponent,
+    DetailsComponent
   ]
 })
 export class PagesModule { }
