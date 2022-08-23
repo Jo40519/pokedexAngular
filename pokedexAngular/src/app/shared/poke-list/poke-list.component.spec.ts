@@ -1,4 +1,7 @@
+import { HttpClientModule } from '@angular/common/http';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { RouterTestingModule } from '@angular/router/testing';
+import { PokeApiService } from 'src/app/service/poke-api.service';
 
 import { PokeListComponent } from './poke-list.component';
 
@@ -8,7 +11,11 @@ describe('PokeListComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ PokeListComponent ]
+      declarations: [ PokeListComponent ],
+      providers: [PokeApiService],
+      imports: [
+        RouterTestingModule
+      ]
     })
     .compileComponents();
   });
