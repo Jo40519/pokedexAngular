@@ -17,6 +17,9 @@ import { SharedModule } from '../shared/shared.module';
     PagesComponent,
     HomeComponent,
     DetailsComponent
+  ],
+  exports: [
+    DetailsComponent
   ]
 })
 export class PagesModule { }

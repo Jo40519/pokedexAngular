@@ -28,5 +28,6 @@ describe('PokeListComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+    expect(component.getAllPokemons).toBeTruthy();
   });
 });

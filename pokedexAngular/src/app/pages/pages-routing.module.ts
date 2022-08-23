@@ -9,7 +9,7 @@ const pagesRoutes: Routes = [
     component: HomeComponent
   },
   {
-    path: 'details',
+    path: 'details/:id',
     component:
     DetailsComponent
   }

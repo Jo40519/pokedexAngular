@@ -1,10 +1,11 @@
 @import '../../../config-scss/rem-calc.scss';
 
 $padding: rem-calc(20);
-
-:host {
+:host{
+.listagem {
   display: flex;
   justify-content: space-between;
+  flex-wrap: wrap;
 
   padding: $padding 0;
   .pokemon {
@@ -15,6 +16,9 @@ $padding: rem-calc(20);
     background: var(--branco);
     border-radius: rem-calc(10);
     padding: rem-calc(20);
+    margin-bottom: rem-calc(10);
+    text-decoration: none;
+    color: var(--primary-color);
 
     &-status{
       h2{
@@ -22,6 +26,7 @@ $padding: rem-calc(20);
         font-style: italic;
         font-weight: 700;
         margin-bottom: rem-calc(10);
+        text-transform: capitalize;
       }
 
       ul{
@@ -30,7 +35,7 @@ $padding: rem-calc(20);
 
         li {
           background: var(--cinza);
-          font-size: rem-calc(10);
+          font-size: rem-calc(13);
           display: flex;
           justify-content: center;
           align-items: center;
@@ -57,8 +62,9 @@ $padding: rem-calc(20);
     background: url('../../../assets/bg/background-list-pokemon.svg');
 
     img{
-      width: rem-calc(80);
+      width: rem-calc(60);
     }
   }
+}
 }
 }
