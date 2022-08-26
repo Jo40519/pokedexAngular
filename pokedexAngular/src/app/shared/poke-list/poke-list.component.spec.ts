@@ -13,9 +13,10 @@ describe('PokeListComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [ PokeListComponent ],
-      providers: [PokeApiService],
+      providers: [ PokeApiService ],
       imports: [
-        RouterTestingModule
+        RouterTestingModule,
+        HttpClientModule
       ]
     })
     .compileComponents();
@@ -24,17 +25,19 @@ describe('PokeListComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(PokeListComponent);
     component = fixture.componentInstance;
-    pokeApiSerice = TestBed.inject(PokeApiService) as jasmine.SpyObj<PokeApiService>;
+    pokeApiSerice = TestBed.inject(PokeApiService) as jasmine.SpyObj<PokeApiService>
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it('Deve criar o component', () => {
     expect(component).toBeTruthy();
-    expect(component.getAllPokemons).toBeTruthy();
+    fixture.detectChanges();
   });
 
   it(`#${PokeListComponent.prototype.getSearch.name} Deve pesquisar e filtrar o pokemon`, () => {
     const value: string = ''
-    expect(component.getSearch(value)).toBeTruthy();
+    const spy = spyOn(component, 'listarPokemons')
+    component.getSearch(value)
+    expect(spy).toHaveBeenCalled();
   })
 });

@@ -11,13 +11,16 @@ export class PokeListComponent implements OnInit {
 
   public getAllPokemons: any;
   public setAllPokemons: any;
-  public telaVisivel = LISTA_POKEMONS;
 
   public apiError: boolean = false;
 
   constructor(private pokeApiService: PokeApiService) { }
 
   ngOnInit(): void {
+    this.listarPokemons();
+  }
+
+  listarPokemons() {
     this.pokeApiService.apiListAllPokemons.subscribe(res => {
       this.setAllPokemons = res.results
       this.getAllPokemons = this.setAllPokemons
@@ -34,9 +37,5 @@ export class PokeListComponent implements OnInit {
     })
 
     this.getAllPokemons = filter;
-  }
-
-  abrirDetalhe() {
-    this.telaVisivel = TELA_DETALHES_POKEMON;
   }
 }
