@@ -11,14 +11,12 @@ import { SharedModule } from '../shared/shared.module';
   imports: [
     CommonModule,
     RoutingModule,
-    SharedModule
+    SharedModule,
+    RouterModule
   ],
   declarations: [
     PagesComponent,
     HomeComponent,
-    DetailsComponent
-  ],
-  exports: [
     DetailsComponent
   ]
 })

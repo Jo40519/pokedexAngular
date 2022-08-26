@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { PokeApiService } from '../../service/poke-api.service';
-import { LISTA_POKEMONS } from '../../constants/constatns';
+import { LISTA_POKEMONS, TELA_DETALHES_POKEMON } from '../../constants/constatns';
 
 @Component({
   selector: 'app-poke-list',
@@ -10,8 +10,10 @@ import { LISTA_POKEMONS } from '../../constants/constatns';
 export class PokeListComponent implements OnInit {
 
   public getAllPokemons: any;
-  private setAllPokemons: any;
+  public setAllPokemons: any;
   public telaVisivel = LISTA_POKEMONS;
+
+  public apiError: boolean = false;
 
   constructor(private pokeApiService: PokeApiService) { }
 
@@ -19,8 +21,11 @@ export class PokeListComponent implements OnInit {
     this.pokeApiService.apiListAllPokemons.subscribe(res => {
       this.setAllPokemons = res.results
       this.getAllPokemons = this.setAllPokemons
-      console.log(this.getAllPokemons)
-    });
+    },
+    error => {
+      this.apiError = true;
+    }
+    );
   }
 
   getSearch(valor: string) {
@@ -29,5 +34,9 @@ export class PokeListComponent implements OnInit {
     })
 
     this.getAllPokemons = filter;
+  }
+
+  abrirDetalhe() {
+    this.telaVisivel = TELA_DETALHES_POKEMON;
   }
 }

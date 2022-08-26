@@ -1,4 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { forkJoin } from 'rxjs';
+import { TELA_DETALHES_POKEMON } from '../../constants/constatns';
+import { PokeApiService } from '../../service/poke-api.service';
 
 @Component({
   selector: 'app-details',
@@ -7,9 +11,35 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DetailsComponent implements OnInit {
 
-  constructor() { }
+
+  public url: string = 'https://pokeapi.co/api/v2/pokemon';
+  public urlName: string = 'https://pokeapi.co/api/v2/pokemon-species';
+  public isLoading: boolean = false;
+  public apiError: boolean = false;
+
+  public pokemon: any;
+  constructor(
+    private activatedRoute: ActivatedRoute,
+    private pokeApiService: PokeApiService
+  ) { }
 
   ngOnInit(): void {
+    this.Pokemon;
+  }
+
+  get Pokemon() {
+    const id = this.activatedRoute.snapshot.params['id']
+    const pokemon = this.pokeApiService.apiGetPokemons(`${this.url}/${id}`);
+    const name = this.pokeApiService.apiGetPokemons(`${this.urlName}/${id}`);
+
+    return forkJoin([pokemon, name]).subscribe(res => {
+      this.pokemon = res;
+      this.isLoading = true;
+    },
+    error => {
+      this.apiError = true;
+    }
+    )
   }
 
 }

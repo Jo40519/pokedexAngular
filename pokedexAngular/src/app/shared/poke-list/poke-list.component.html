@@ -1,8 +1,8 @@
 
  <app-poke-search (emitSearch)="getSearch($event)"></app-poke-search>
- <section class="listagem" [style]="telaVisivel === 'lista-pokmemons' ? '' : 'display: none;'">
+ <section class="listagem">
 <ng-template ngFor let-pokemon [ngForOf]="getAllPokemons">
-<a [routerLink]="['details', pokemon.status.id]" routerLinkActive="router-link-active"  class="pokemon" *ngIf="pokemon.status">
+<a [routerLink]="['details', pokemon.status.id]" (click)="abrirDetalhe()"  class="pokemon" *ngIf="pokemon.status">
   <section class="pokemon-status">
   <h2>
     {{pokemon.name}} {{pokemon.status.id}}
@@ -20,6 +20,9 @@
 </ng-template>
 </section>
 
-<ng-container [style]="telaVisivel === 'detalhes-pokemon' ? '' : 'display: none;'">
-
-</ng-container>
+<img
+    src="assets/Group 4.png"
+    alt="Deu erro na mostragem do pokemon"
+    width="100%"
+    *ngIf="apiError"
+  >

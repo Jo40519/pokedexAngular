@@ -8,6 +8,7 @@ import { PokeListComponent } from './poke-list.component';
 describe('PokeListComponent', () => {
   let component: PokeListComponent;
   let fixture: ComponentFixture<PokeListComponent>;
+  let pokeApiSerice: jasmine.SpyObj<PokeApiService>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -23,6 +24,7 @@ describe('PokeListComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(PokeListComponent);
     component = fixture.componentInstance;
+    pokeApiSerice = TestBed.inject(PokeApiService) as jasmine.SpyObj<PokeApiService>;
     fixture.detectChanges();
   });
 
@@ -30,4 +32,9 @@ describe('PokeListComponent', () => {
     expect(component).toBeTruthy();
     expect(component.getAllPokemons).toBeTruthy();
   });
+
+  it(`#${PokeListComponent.prototype.getSearch.name} Deve pesquisar e filtrar o pokemon`, () => {
+    const value: string = ''
+    expect(component.getSearch(value)).toBeTruthy();
+  })
 });

@@ -2,6 +2,8 @@
 @import './config-scss/reset.scss';
 @import './config-scss/variables.scss';
 @import './config-scss/rem-calc.scss';
+@import './config-scss/btn.scss';
+@import './config-scss/animations.scss';
 
 html{
   font-family: 'Roboto', sans-serif;
@@ -13,3 +15,4 @@ main {
   margin: 0 auto;
   box-sizing: border-box;
 }
+
